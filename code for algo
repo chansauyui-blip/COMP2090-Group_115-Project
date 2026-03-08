@@ -1,0 +1,30 @@
+from collections import deque, defaultdict
+
+def bfs(graph, start):
+    visited = set()           # Track visited nodes
+    queue = deque([start])    # Queue for BFS
+    visit_order = []          # Record the order of visit
+    
+    visited.add(start)
+    
+    while queue:
+        node = queue.popleft()          #delete first on que
+        visit_order.append(node)        
+        
+        # Explore all neighbors
+        for neighbor in graph[node]:
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.append(neighbor)      # que unvisited neighbors
+    
+    return visit_order
+
+# Example
+graph = defaultdict(list)
+edges = [('A', 'B'), ('A', 'C'), ('B', 'D'), ('C', 'D'), ('C', 'E')]
+for u, v in edges:
+    graph[u].append(v)
+    graph[v].append(u)  
+
+print("BFS starting from A:", bfs(graph, 'A'))
+# Output: BFS starting from A: ['A', 'B', 'C', 'D', 'E']
