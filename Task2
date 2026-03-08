@@ -1,2 +1,40 @@
 #Task 2 Report
 For task2 we decided to analyse Graph(Data structure) and Breadth-First Search (BFS) (algorithm) since they are simple but essential in our life.
+*GRAPH*
+Abstract Data Type (ADT)
+A graph is a collection of verticles(nodes) connected by edges(Connections).It models relationships between objects.
+Graphs con be UNDIRECTED(edges with no direction, like friendships) or DIRECTED(edges with directions like a road).
+Edges can be WEIGHTED with costs or UNWEIGHTED.
+
+Real life example: Six degrees of separation(six handshake rule)
+This is comes from social psychology experiments like Stanley Milgram's 1960s "small world" letter experiment. The rule states any two prople on earth are connected by six or fewer social connections
+So you → your friend → their colleagues → ... up to a maximum of about 6 steps to reach almost anyone, including famous people or strangers far away.
+In graph terms People = nodes, "Know each other" = connections. Each of you are connected undirected since this is your friendship with no road to follow.
+
+*Breadth-First Search (BFS)*
+BFS is a graph algorithm that explores all vertices level by level. It starts from a chosen source node, visits all its close neighbors first, then their neighbors, and so on — like ripples in water.
+It queues(FIFO) to keep track of the nodes to visit next, and a visited set to avoid re-visiting the same node.
+How BFS Works (Step-by-Step Example)
+Consider this small undirected graph:
+Nodes: A, B, C, D, E
+Edges: A-B, A-C, B-D, C-D, C-E
+Start BFS from node A.
+
+Enqueue A, mark A visited → Queue: [A]
+Dequeue A, visit neighbors B & C → Enqueue B, C, mark visited → Queue: [B, C]
+Dequeue B, visit neighbor D (C already visited) → Enqueue D → Queue: [C, D]
+Dequeue C, visit neighbor E (D already enqueued) → Enqueue E → Queue: [D, E]
+Dequeue D → no new neighbors
+Dequeue E → no new neighbors
+
+Visit order: A → B → C → D → E
+
+Time Complexity Analysis
+
+Let V = number of vertices, E = number of edges.
+BFS visits each vertex once and checks each edge once.
+Time complexity: O(V + E) — linear in the size of the graph.
+Space complexity: O(V) for the queue and visited set (worst case).
+
+This alorithm best matches the six degrees of separation. Everyone has a different connection to the target person, some maybe longer than six nodes.
+If we apply BFS in our rule, we can find the shortest path/degrees of separation bwtween two people using such a graph.
